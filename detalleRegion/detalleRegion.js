@@ -26,7 +26,7 @@ $(document).ready(function () {
         $('table').append('<tr>'+
                             '<td>'+i+'</td>'+
                             '<td>'+location.name+'</td>'+
-                            '<td><a class="btn btn-primary" title="Detalles" href="./detalleRegion/detalleLocacion.html?region='+id+'">Detalles</a></td>'+
+                            '<td><a class="btn btn-primary" title="Detalles" href="../detalleLocacion/detalleLocacion.html?locacion='+id+'">Detalles</a></td>'+
                             '</tr>');
                         
     }
