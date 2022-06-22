@@ -15,6 +15,7 @@ $(document).ready(function () {
         locations = response.locations;
         paginas = Math.ceil(locations.length/10);
         generarPaginacion();
+        mostrarRegion(response.name)
         let locationspag = locations.slice(10*(actual-1), 10*actual);
         for(let i=0; i<locationspag.length;i++){
             appendtable(i+1, locationspag[i]);
@@ -64,6 +65,10 @@ $(document).ready(function () {
                 appendtable(10*(actual-1) + (i+1), locationspag[i]);
             }
         });
+    }
+
+    function mostrarRegion(nombre){
+        $('#labelRegion').html("Región "+ nombre);
     }
 
 
