@@ -21,9 +21,6 @@ $(document).ready(function () {
         }
     })
 
-
-
-
     function appendtable(i, location){
         let id = location.url.split("/")[6];
         $('table').append('<tr>'+
@@ -34,6 +31,40 @@ $(document).ready(function () {
                         
     }
 
+    function generarPaginacion(){
+        pagul.html('');
+        if(actual>1){
+            pagul.append('<li class="page-item" ><button data-page="'+(actual - 1)+'" class="page-link">Previous</button></li>');
+        }else{
+            pagul.append('<li class="page-item disabled"><button class="page-link" tabindex="-1">Previous</button></li>');
+        }
+        for(i = 1;i <= paginas ;i++){
+
+            if(i===actual){
+                pagul.append('<li class="page-item active"><span data-page="'+(i)+'" class="page-link">'+i+'<span class="sr-only">(current)</span></span></li>');
+            }else{
+                pagul.append('<li class="page-item"><button data-page="'+(i)+'" class="page-link">'+i+'</button></li>');
+            }
+        }
+
+        if(actual<paginas){
+            pagul.append('<li class="page-item"><button class="page-link">Next</button></li>');
+        }else{
+            pagul.append('<li class="page-item disabled"><button data-page="'+(actual + 1)+'" class="page-link" tabindex="-1">Next</button></li>');
+        }
+
+        $('.page-link').on('click',function(event){
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            actual = $(this).data('page');
+            $("#tablaLocaciones").html("");
+            generarPaginacion();
+            let locationspag = locations.slice(10*(actual-1), 10*actual);
+            for(let i=0; i<locationspag.length;i++){
+                appendtable(10*(actual-1) + (i+1), locationspag[i]);
+            }
+        });
+    }
 
 
 });
